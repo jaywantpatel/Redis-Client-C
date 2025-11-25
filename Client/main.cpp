@@ -44,6 +44,7 @@ int main(int argc, char* argv[]) {
     std::string host = "127.0.0.1";
     int port = 6379;
     int i = 1;
+    std::vector<std::string> commandArgs;
 
     //Parse command-line args for -h and -p
     while(i < argc){
@@ -53,6 +54,12 @@ int main(int argc, char* argv[]) {
         } else if (arg == "-p" && i+1 < argc){
             port = std::stoi(argv[++i]);
         } else {
+            // Remaining arguments
+            while (i < argc)
+            {
+                commandArgs.push_back(argv[i]);
+                i++;
+            }
             break;
         }
         ++i;
@@ -60,7 +67,8 @@ int main(int argc, char* argv[]) {
 
     //Handle REPL and one-shot command modes
     CLI cli(host, port);
-    cli.run();
+    cli.run(commandArgs); //launch REPL mode
+    
 
     return 0;
 }
