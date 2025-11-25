@@ -16,7 +16,8 @@ public:
     bool connectToServer();
     void disconnect();
     int getSocketFD() const;
-
+    bool sendCommand(const std::string &command);
+    
 private:
     std::string host;
     int port;
