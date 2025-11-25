@@ -50,7 +50,10 @@ void CLI::run() {
             std::cerr << "(Error) Failed to send command \n";
             break;
         }
-        //Parse the response and print
 
+        //Parse the response and print
+        std::string response = ResponseParser::parseResponse(redisClient.getSocketFD());
+        std::cout << response << "\n";
    }
+   redisClient.disconnect();
 }
