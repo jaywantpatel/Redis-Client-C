@@ -2,7 +2,6 @@
 #define CLI_H
 
 #include <string>
-//...
 #include "RedisClient.h"
 #include "CommandHandler.h"
 #include "ResponseParser.h"
@@ -12,12 +11,13 @@ public:
     CLI(const std::string &host, int port);
     void run(const std::vector<std::string>& commandArgs);
     void executeCommand(const std::vector<std::string>& commandArgs);
+    //handles pub-sub
+    void handleSubscription(const std::vector<std::string>& commandArgs);
 
 private:
     std::string host;
     int port;
     RedisClient redisClient;
-
 };
 
-#endif //CLI_H
+#endif // CLI_H
